@@ -5,20 +5,19 @@ const middlewares = jsonServer.defaults();
 
 server.use(middlewares);
 
-// Enable CORS for all requests
 server.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*'); // Allows requests from all domains
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS'); // Allows necessary HTTP methods
+    res.header('Access-Control-Allow-Origin', '*'); 
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     
     if (req.method === 'OPTIONS') {
-        return res.sendStatus(204); // Preflight request response
+        return res.sendStatus(204);
     }
     
     next();
 });
 
-server.use(router); // Removes the `/api` prefix
+server.use(router); 
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
